@@ -33,6 +33,7 @@
         packages.default = SpiecEasi;
         devShells.default = pkgs.mkShell {
           buildInputs = [ SpiecEasi ];
+          inputsFrom = pkgs.lib.singleton SpiecEasi;
         };
       }
     );
