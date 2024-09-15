@@ -28,12 +28,18 @@
               ;
           };
         };
+        rvenv = pkgs.rWrapper.override {
+          packages = with pkgs.rPackages; [
+            devtools
+          ];
+        };
       in
       {
         packages.default = SpiecEasi;
         devShells.default = pkgs.mkShell {
           buildInputs = [ SpiecEasi ];
           inputsFrom = pkgs.lib.singleton SpiecEasi;
+          packages = pkgs.lib.singleton rvenv;
         };
       }
     );
