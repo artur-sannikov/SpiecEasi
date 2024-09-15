@@ -1,8 +1,9 @@
 {
   description = "Nix Flake for SpiecEasi R package";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
   outputs =
     {
       self,
@@ -16,17 +17,6 @@
         SpiecEasi = pkgs.rPackages.buildRPackage {
           name = "SpiecEasi";
           src = self;
-          # propagatedBuildInputs = builtins.attrValues {
-          #   inherit (pkgs.rPackages)
-          #     MASS
-          #     Matrix
-          #     RcppArmadillo
-          #     VGAM
-          #     glmnet
-          #     huge
-          #     pulsar
-          #     ;
-          # };
           nativeBuildInputs = with pkgs.rPackages; [
             MASS
             Matrix
