@@ -17,15 +17,17 @@
         SpiecEasi = pkgs.rPackages.buildRPackage {
           name = "SpiecEasi";
           src = self;
-          nativeBuildInputs = with pkgs.rPackages; [
-            MASS
-            Matrix
-            RcppArmadillo
-            VGAM
-            glmnet
-            huge
-            pulsar
-          ];
+          propagatedBuildInputs = builtins.attrValues {
+            inherit (pkgs.rPackages)
+              MASS
+              Matrix
+              RcppArmadillo
+              VGAM
+              glmnet
+              huge
+              pulsar
+              ;
+          };
         };
         rvenv = pkgs.rWrapper.override {
           packages = with pkgs.rPackages; [
