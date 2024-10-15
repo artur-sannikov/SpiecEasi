@@ -1,7 +1,7 @@
 {
   description = "Nix Flake for SpiecEasi R package";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:rstats-on-nix/nixpkgs/r-bioc-devel";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
@@ -29,18 +29,12 @@
               ;
           };
         };
-        rvenv = pkgs.rWrapper.override {
-          packages = with pkgs.rPackages; [
-            devtools
-          ];
-        };
       in
       {
         packages.default = SpiecEasi;
         devShells.default = pkgs.mkShell {
           buildInputs = [ SpiecEasi ];
           inputsFrom = pkgs.lib.singleton SpiecEasi;
-          packages = pkgs.lib.singleton rvenv;
         };
       }
     );
